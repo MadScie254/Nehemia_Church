@@ -125,20 +125,8 @@ document.addEventListener("DOMContentLoaded", () => {
       return;
     }
 
-    const storageKey = "nmkProjectDonations";
-    let storedDonations = {};
-
-    try {
-      const raw = window.localStorage.getItem(storageKey);
-      if (raw) {
-        const parsed = JSON.parse(raw);
-        if (parsed && typeof parsed === "object") {
-          storedDonations = parsed;
-        }
-      }
-    } catch (_error) {
-      storedDonations = {};
-    }
+    const projectApiUrl = "/api/projects";
+    const donationApiUrl = "/api/donations";
 
     const projects = new Map();
 
@@ -152,11 +140,21 @@ document.addEventListener("DOMContentLoaded", () => {
         card,
         name: card.getAttribute("data-project-name") || projectId,
         target: toNumber(card.getAttribute("data-target")),
-        initialRaised: toNumber(card.getAttribute("data-initial-raised"))
+        raised: toNumber(card.getAttribute("data-initial-raised"))
       });
     });
 
-    const readStoredAmount = (projectId) => toNumber(storedDonations[projectId]);
+    const updateProjectQuery = (projectId) => {
+      const url = new URL(window.location.href);
+
+      if (projectId) {
+        url.searchParams.set("project", projectId);
+      } else {
+        url.searchParams.delete("project");
+      }
+
+      window.history.replaceState({}, "", `${url.pathname}${url.search}${url.hash}`);
+    };
 
     const setFeedback = (message, type) => {
       if (!(donationFeedback instanceof HTMLElement)) {
@@ -184,15 +182,22 @@ document.addEventListener("DOMContentLoaded", () => {
       activeProjectTitle.textContent = `Donate to ${project.name}`;
     };
 
+    const highlightProjectCard = (projectId) => {
+      projectCards.forEach((card) => card.classList.remove("project-highlight"));
+      const highlighted = projects.get(projectId);
+      if (highlighted) {
+        highlighted.card.classList.add("project-highlight");
+      }
+    };
+
     const renderProjectProgress = () => {
       projects.forEach((project, projectId) => {
-        const totalRaised = project.initialRaised + readStoredAmount(projectId);
-        const percent = project.target > 0 ? Math.min((totalRaised / project.target) * 100, 100) : 0;
+        const percent = project.target > 0 ? Math.min((project.raised / project.target) * 100, 100) : 0;
         const displayPercent = Number.isInteger(percent) ? String(percent) : percent.toFixed(1);
 
         const raisedElement = project.card.querySelector("[data-project-raised]");
         if (raisedElement) {
-          raisedElement.textContent = formatKes(totalRaised);
+          raisedElement.textContent = formatKes(project.raised);
         }
 
         const targetElement = project.card.querySelector("[data-project-target]");
@@ -217,22 +222,59 @@ document.addEventListener("DOMContentLoaded", () => {
       });
     };
 
-    const focusProjectDonation = (projectId) => {
+    const fetchJson = async (url, options = {}) => {
+      const response = await fetch(url, {
+        ...options,
+        headers: {
+          Accept: "application/json",
+          ...(options.headers || {})
+        }
+      });
+
+      const payload = await response.json().catch(() => ({}));
+      if (!response.ok) {
+        throw new Error(payload.message || "Request failed.");
+      }
+
+      return payload;
+    };
+
+    const hydrateProjectsFromApi = async () => {
+      const payload = await fetchJson(projectApiUrl);
+      const apiProjects = Array.isArray(payload.projects) ? payload.projects : [];
+
+      apiProjects.forEach((apiProject) => {
+        const local = projects.get(apiProject.id);
+        if (!local) {
+          return;
+        }
+
+        local.name = String(apiProject.name || local.name);
+        local.target = toNumber(apiProject.target) || local.target;
+        local.raised = toNumber(apiProject.raised);
+      });
+
+      renderProjectProgress();
+    };
+
+    const focusProjectDonation = (projectId, options = {}) => {
       if (!projects.has(projectId)) {
         return;
       }
+
+      const shouldScroll = options.scroll !== false;
+      const shouldUpdateUrl = options.updateUrl !== false;
 
       projectSelect.value = projectId;
       updateActiveProjectTitle(projectId);
       setFeedback(`You are giving to ${projects.get(projectId).name}. Enter amount to continue.`, null);
 
-      projectCards.forEach((card) => card.classList.remove("project-highlight"));
-      const highlighted = projects.get(projectId);
-      if (highlighted) {
-        highlighted.card.classList.add("project-highlight");
+      highlightProjectCard(projectId);
+      if (shouldUpdateUrl) {
+        updateProjectQuery(projectId);
       }
 
-      if (donationSection) {
+      if (shouldScroll && donationSection) {
         donationSection.scrollIntoView({ behavior: "smooth", block: "start" });
       }
 
@@ -252,6 +294,8 @@ document.addEventListener("DOMContentLoaded", () => {
 
     projectSelect.addEventListener("change", () => {
       updateActiveProjectTitle(projectSelect.value);
+      highlightProjectCard(projectSelect.value);
+      updateProjectQuery(projectSelect.value);
     });
 
     if (donationForm instanceof HTMLFormElement && amountInput instanceof HTMLInputElement) {
@@ -271,21 +315,63 @@ document.addEventListener("DOMContentLoaded", () => {
           return;
         }
 
-        storedDonations[selectedProject] = readStoredAmount(selectedProject) + amount;
+        const formData = new FormData(donationForm);
+        const donorName = String(formData.get("donorName") || "");
+        const donorEmail = String(formData.get("donorEmail") || "");
+        const paymentMethod = String(formData.get("paymentMethod") || "");
+        const note = String(formData.get("note") || "");
 
-        try {
-          window.localStorage.setItem(storageKey, JSON.stringify(storedDonations));
-        } catch (_error) {
-          // Ignore storage errors and keep UI responsive.
+        const submitButton = donationForm.querySelector("button[type='submit']");
+        if (submitButton instanceof HTMLButtonElement) {
+          submitButton.disabled = true;
         }
 
-        renderProjectProgress();
-        setFeedback(`Asante! ${formatKes(amount)} recorded for ${projects.get(selectedProject).name}.`, "success");
-        amountInput.value = "";
+        fetchJson(donationApiUrl, {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json"
+          },
+          body: JSON.stringify({
+            projectId: selectedProject,
+            amount,
+            donorName,
+            donorEmail,
+            paymentMethod,
+            note
+          })
+        })
+          .then(() => hydrateProjectsFromApi())
+          .then(() => {
+            setFeedback(`Asante! ${formatKes(amount)} recorded for ${projects.get(selectedProject).name}.`, "success");
+            amountInput.value = "";
+          })
+          .catch((error) => {
+            setFeedback(error.message || "Unable to record donation right now.", "error");
+          })
+          .finally(() => {
+            if (submitButton instanceof HTMLButtonElement) {
+              submitButton.disabled = false;
+            }
+          });
       });
     }
 
     renderProjectProgress();
+
+    hydrateProjectsFromApi().catch(() => {
+      setFeedback("Donation backend unavailable. Start the website using npm install then npm start.", "error");
+    });
+
+    const projectFromQuery = new URLSearchParams(window.location.search).get("project");
+    if (projectFromQuery && projects.has(projectFromQuery)) {
+      focusProjectDonation(projectFromQuery, { scroll: false, updateUrl: false });
+    }
+
+    window.setInterval(() => {
+      hydrateProjectsFromApi().catch(() => {
+        // Ignore transient sync errors during background refresh.
+      });
+    }, 45000);
   };
 
   const initSermonFilters = () => {
@@ -306,7 +392,52 @@ document.addEventListener("DOMContentLoaded", () => {
 
     const normalize = (value) => String(value || "").trim().toLowerCase();
 
-    const applyFilters = () => {
+    const syncFiltersToUrl = () => {
+      const url = new URL(window.location.href);
+
+      ["series", "preacher", "topic", "book"].forEach((key) => {
+        url.searchParams.delete(key);
+      });
+
+      filterControls.forEach((control) => {
+        const key = control.getAttribute("data-sermon-filter");
+        if (!key) {
+          return;
+        }
+
+        if (control.value) {
+          url.searchParams.set(key, control.value);
+        }
+      });
+
+      window.history.replaceState({}, "", `${url.pathname}${url.search}${url.hash}`);
+    };
+
+    const setFiltersFromUrl = () => {
+      const params = new URLSearchParams(window.location.search);
+
+      filterControls.forEach((control) => {
+        const key = control.getAttribute("data-sermon-filter");
+        if (!key) {
+          return;
+        }
+
+        const incomingValue = params.get(key);
+        if (!incomingValue) {
+          control.value = "";
+          return;
+        }
+
+        const matchingOption = Array.from(control.options).find(
+          (option) => normalize(option.value) === normalize(incomingValue)
+        );
+
+        control.value = matchingOption ? matchingOption.value : "";
+      });
+    };
+
+    const applyFilters = (options = {}) => {
+      const shouldSyncUrl = options.syncUrl !== false;
       let visibleCount = 0;
 
       sermonCards.forEach((card) => {
@@ -333,6 +464,10 @@ document.addEventListener("DOMContentLoaded", () => {
         } else {
           resultText.textContent = `Showing ${visibleCount} of ${sermonCards.length} sermons.`;
         }
+      }
+
+      if (shouldSyncUrl) {
+        syncFiltersToUrl();
       }
     };
 
@@ -367,6 +502,7 @@ document.addEventListener("DOMContentLoaded", () => {
       });
     });
 
+    setFiltersFromUrl();
     applyFilters();
   };
 

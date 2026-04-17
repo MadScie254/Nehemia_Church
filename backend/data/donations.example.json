@@ -1,0 +1,23 @@
+{
+  "projects": [
+    {
+      "id": "church-building",
+      "name": "Church Building Project",
+      "target": 5000000,
+      "raised": 2600000
+    },
+    {
+      "id": "youth-equipment",
+      "name": "Youth Equipment Fund",
+      "target": 750000,
+      "raised": 277500
+    },
+    {
+      "id": "community-outreach",
+      "name": "Community Outreach Fund",
+      "target": 1200000,
+      "raised": 768000
+    }
+  ],
+  "donations": []
+}
