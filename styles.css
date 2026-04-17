@@ -615,6 +615,26 @@ body:not(.has-hero) .site-header {
   transition: transform 0.3s ease, border-color 0.3s ease;
 }
 
+.section-dark .sermon-card,
+.section-dark .event-card,
+.section-dark .testimony-card,
+.section-dark .devotional-card,
+.section-dark .value-card,
+.section-dark .team-card,
+.section-dark .project-card,
+.section-dark .form-card,
+.section-dark .contact-card,
+.section-dark .archive-card,
+.section-dark .series-card,
+.section-dark .audio-item,
+.section-dark .way-card,
+.section-dark .profile-feature,
+.section-dark .ministry-content,
+.section-dark .calendar-wrap,
+.section-dark .schedule-card {
+  color: var(--color-text-dark);
+}
+
 .sermon-card:hover,
 .event-card:hover,
 .testimony-card:hover,
@@ -985,6 +1005,46 @@ body:not(.has-hero) .site-header {
   color: var(--color-midnight);
 }
 
+.filter-panel {
+  border: 1px solid rgba(201, 168, 76, 0.35);
+  border-radius: var(--radius-md);
+  padding: 1rem;
+  margin-bottom: 1.3rem;
+  background: rgba(255, 255, 255, 0.08);
+}
+
+.sermon-filter-form {
+  justify-content: center;
+}
+
+.sermon-filter-form select {
+  min-width: 170px;
+  flex: 1 1 170px;
+  max-width: 240px;
+}
+
+.series-card {
+  display: flex;
+  flex-direction: column;
+}
+
+.series-description {
+  color: var(--color-muted);
+  margin: 0.3rem 0 0.4rem;
+}
+
+.series-card .btn {
+  margin-top: auto;
+}
+
+.archive-meta {
+  display: grid;
+  gap: 0.2rem;
+  color: var(--color-muted);
+  font-size: 0.86rem;
+  margin-top: 0.45rem;
+}
+
 .archive-grid,
 .series-grid,
 .devotional-grid,
@@ -1107,6 +1167,14 @@ body:not(.has-hero) .site-header {
   color: var(--color-gold);
 }
 
+.way-card ol {
+  list-style: decimal;
+  margin-top: 0.5rem;
+  padding-left: 1.1rem;
+  display: grid;
+  gap: 0.1rem;
+}
+
 .paybill-number {
   margin: 0.7rem 0;
   font-family: "Cormorant Garamond", serif;
@@ -1116,6 +1184,39 @@ body:not(.has-hero) .site-header {
 
 .project-card h4 {
   margin-bottom: 0.7rem;
+}
+
+.project-amount {
+  color: var(--color-text-dark);
+  font-size: 0.95rem;
+}
+
+.project-donate-btn {
+  width: 100%;
+  margin-top: 0.7rem;
+}
+
+.donate-form-card {
+  width: min(880px, 100%);
+  margin: 0 auto;
+}
+
+.donation-feedback {
+  margin-top: 0.9rem;
+  font-weight: 600;
+}
+
+.donation-feedback.success {
+  color: #1f6d3b;
+}
+
+.donation-feedback.error {
+  color: #8d1f32;
+}
+
+.project-highlight {
+  border-color: rgba(201, 168, 76, 0.9);
+  box-shadow: 0 0 0 3px rgba(201, 168, 76, 0.2);
 }
 
 .progress-track {

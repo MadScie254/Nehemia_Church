@@ -95,45 +95,141 @@
           <h2>Sermon Archive</h2>
           <p class="muted" data-style="color: #dac8a1;">Browse messages by series, preacher, topic, or Scripture book.</p>
         </div>
-        <div class="filter-row">
-          <button class="filter-btn active" type="button">All</button>
-          <button class="filter-btn" type="button">By Series</button>
-          <button class="filter-btn" type="button">By Preacher</button>
-          <button class="filter-btn" type="button">By Topic</button>
-          <button class="filter-btn" type="button">By Book</button>
+        <div class="filter-panel">
+          <form class="inline-form sermon-filter-form" action="#" method="get">
+            <select data-sermon-filter="series" aria-label="Filter sermons by series" title="Filter sermons by series">
+              <option value="">All Series</option>
+              <option value="Rebuild the Walls">Rebuild the Walls</option>
+              <option value="House of Prayer">House of Prayer</option>
+              <option value="Kingdom Families">Kingdom Families</option>
+              <option value="Walking in Purpose">Walking in Purpose</option>
+            </select>
+            <select data-sermon-filter="preacher" aria-label="Filter sermons by preacher" title="Filter sermons by preacher">
+              <option value="">All Preachers</option>
+              <option value="Bishop David Walukhu">Bishop David Walukhu</option>
+              <option value="Pastor Murunga">Pastor Murunga</option>
+            </select>
+            <select data-sermon-filter="topic" aria-label="Filter sermons by topic" title="Filter sermons by topic">
+              <option value="">All Topics</option>
+              <option value="Restoration">Restoration</option>
+              <option value="Prayer">Prayer</option>
+              <option value="Family">Family</option>
+              <option value="Purpose">Purpose</option>
+            </select>
+            <select data-sermon-filter="book" aria-label="Filter sermons by book" title="Filter sermons by book">
+              <option value="">All Books</option>
+              <option value="Nehemiah">Nehemiah</option>
+              <option value="Acts">Acts</option>
+              <option value="2 Chronicles">2 Chronicles</option>
+              <option value="Ephesians">Ephesians</option>
+              <option value="Joshua">Joshua</option>
+              <option value="Jeremiah">Jeremiah</option>
+              <option value="Esther">Esther</option>
+            </select>
+            <button class="btn btn-outline" type="button" data-sermon-clear>Reset Filters</button>
+          </form>
+          <p class="center mt-1 muted" data-sermon-results>Showing all sermons.</p>
         </div>
-        <div class="archive-grid">
-          <article class="archive-card">
+        <div class="archive-grid" id="sermon-archive">
+          <article class="archive-card" data-sermon-card data-series="Rebuild the Walls" data-preacher="Bishop David Walukhu" data-topic="Restoration" data-book="Nehemiah">
             <div class="thumb" data-style="background-image: url('https://images.unsplash.com/photo-1438232992991-995b7058bbb3?auto=format&fit=crop&w=800&q=80');"></div>
             <h3>Hope Beyond Ruins</h3>
             <p class="muted">Bishop David Walukhu | Mar 31</p>
+            <div class="archive-meta">
+              <span>Series: Rebuild the Walls</span>
+              <span>Topic: Restoration | Book: Nehemiah</span>
+            </div>
             <div class="hero-ctas" data-style="justify-content: flex-start; margin-top: 0.6rem;">
               <a class="btn btn-outline" href="#">Watch</a>
               <a class="btn btn-outline" href="#">Listen</a>
             </div>
           </article>
-          <article class="archive-card">
+          <article class="archive-card" data-sermon-card data-series="Rebuild the Walls" data-preacher="Bishop David Walukhu" data-topic="Restoration" data-book="Nehemiah">
+            <div class="thumb" data-style="background-image: url('https://images.unsplash.com/photo-1515168833906-d2a3b82b302a?auto=format&fit=crop&w=800&q=80');"></div>
+            <h3>Rise with Courage</h3>
+            <p class="muted">Bishop David Walukhu | Mar 28</p>
+            <div class="archive-meta">
+              <span>Series: Rebuild the Walls</span>
+              <span>Topic: Restoration | Book: Nehemiah</span>
+            </div>
+            <div class="hero-ctas" data-style="justify-content: flex-start; margin-top: 0.6rem;">
+              <a class="btn btn-outline" href="#">Watch</a>
+              <a class="btn btn-outline" href="#">Listen</a>
+            </div>
+          </article>
+          <article class="archive-card" data-sermon-card data-series="House of Prayer" data-preacher="Pastor Murunga" data-topic="Prayer" data-book="Acts">
             <div class="thumb" data-style="background-image: url('https://images.unsplash.com/photo-1511379938547-c1f69419868d?auto=format&fit=crop&w=800&q=80');"></div>
             <h3>When Heaven Responds</h3>
             <p class="muted">Pastor Murunga | Mar 24</p>
+            <div class="archive-meta">
+              <span>Series: House of Prayer</span>
+              <span>Topic: Prayer | Book: Acts</span>
+            </div>
             <div class="hero-ctas" data-style="justify-content: flex-start; margin-top: 0.6rem;">
               <a class="btn btn-outline" href="#">Watch</a>
               <a class="btn btn-outline" href="#">Listen</a>
             </div>
           </article>
-          <article class="archive-card">
+          <article class="archive-card" data-sermon-card data-series="House of Prayer" data-preacher="Bishop David Walukhu" data-topic="Prayer" data-book="2 Chronicles">
             <div class="thumb" data-style="background-image: url('https://images.unsplash.com/photo-1504052434569-70ad5836ab65?auto=format&fit=crop&w=800&q=80');"></div>
-            <h3>Oil for Rebuilders</h3>
-            <p class="muted">Bishop David Walukhu | Mar 17</p>
+            <h3>Fire on the Altar</h3>
+            <p class="muted">Bishop David Walukhu | Mar 20</p>
+            <div class="archive-meta">
+              <span>Series: House of Prayer</span>
+              <span>Topic: Prayer | Book: 2 Chronicles</span>
+            </div>
             <div class="hero-ctas" data-style="justify-content: flex-start; margin-top: 0.6rem;">
               <a class="btn btn-outline" href="#">Watch</a>
               <a class="btn btn-outline" href="#">Listen</a>
             </div>
           </article>
-          <article class="archive-card">
-            <div class="thumb" data-style="background-image: url('https://images.unsplash.com/photo-1420585269105-d908ec316eb3?auto=format&fit=crop&w=800&q=80');"></div>
+          <article class="archive-card" data-sermon-card data-series="Kingdom Families" data-preacher="Pastor Murunga" data-topic="Family" data-book="Ephesians">
+            <div class="thumb" data-style="background-image: url('https://images.unsplash.com/photo-1504052434569-70ad5836ab65?auto=format&fit=crop&w=800&q=80');"></div>
             <h3>Grace for Families</h3>
+            <p class="muted">Pastor Murunga | Mar 17</p>
+            <div class="archive-meta">
+              <span>Series: Kingdom Families</span>
+              <span>Topic: Family | Book: Ephesians</span>
+            </div>
+            <div class="hero-ctas" data-style="justify-content: flex-start; margin-top: 0.6rem;">
+              <a class="btn btn-outline" href="#">Watch</a>
+              <a class="btn btn-outline" href="#">Listen</a>
+            </div>
+          </article>
+          <article class="archive-card" data-sermon-card data-series="Kingdom Families" data-preacher="Bishop David Walukhu" data-topic="Family" data-book="Joshua">
+            <div class="thumb" data-style="background-image: url('https://images.unsplash.com/photo-1490750967868-88aa4486c946?auto=format&fit=crop&w=800&q=80');"></div>
+            <h3>Altar in the Home</h3>
+            <p class="muted">Bishop David Walukhu | Mar 14</p>
+            <div class="archive-meta">
+              <span>Series: Kingdom Families</span>
+              <span>Topic: Family | Book: Joshua</span>
+            </div>
+            <div class="hero-ctas" data-style="justify-content: flex-start; margin-top: 0.6rem;">
+              <a class="btn btn-outline" href="#">Watch</a>
+              <a class="btn btn-outline" href="#">Listen</a>
+            </div>
+          </article>
+          <article class="archive-card" data-sermon-card data-series="Walking in Purpose" data-preacher="Pastor Murunga" data-topic="Purpose" data-book="Jeremiah">
+            <div class="thumb" data-style="background-image: url('https://images.unsplash.com/photo-1420585269105-d908ec316eb3?auto=format&fit=crop&w=800&q=80');"></div>
+            <h3>Walking in Purpose</h3>
             <p class="muted">Pastor Murunga | Mar 10</p>
+            <div class="archive-meta">
+              <span>Series: Walking in Purpose</span>
+              <span>Topic: Purpose | Book: Jeremiah</span>
+            </div>
+            <div class="hero-ctas" data-style="justify-content: flex-start; margin-top: 0.6rem;">
+              <a class="btn btn-outline" href="#">Watch</a>
+              <a class="btn btn-outline" href="#">Listen</a>
+            </div>
+          </article>
+          <article class="archive-card" data-sermon-card data-series="Walking in Purpose" data-preacher="Bishop David Walukhu" data-topic="Purpose" data-book="Esther">
+            <div class="thumb" data-style="background-image: url('https://images.unsplash.com/photo-1521791136064-7986c2920216?auto=format&fit=crop&w=800&q=80');"></div>
+            <h3>Called for Such a Time</h3>
+            <p class="muted">Bishop David Walukhu | Mar 07</p>
+            <div class="archive-meta">
+              <span>Series: Walking in Purpose</span>
+              <span>Topic: Purpose | Book: Esther</span>
+            </div>
             <div class="hero-ctas" data-style="justify-content: flex-start; margin-top: 0.6rem;">
               <a class="btn btn-outline" href="#">Watch</a>
               <a class="btn btn-outline" href="#">Listen</a>
@@ -143,32 +239,40 @@
       </div>
     </section>
 
-    <section class="section section-light section-padding">
+    <section class="section section-light section-padding" id="series-library">
       <div class="container" data-aos="fade-up">
         <div class="section-heading">
-          <h2>Sermon Series</h2>
-          <p class="muted">Journey through themed teachings that shape spiritual growth.</p>
+          <h2>Sermon Series Spotlight</h2>
+          <p class="muted">Explore each series and tap to view all messages in that journey.</p>
         </div>
         <div class="series-grid">
-          <article class="series-card">
+          <article class="series-card" data-series-card="Rebuild the Walls">
             <div class="thumb" data-style="background-image: url('https://images.unsplash.com/photo-1529070538774-1843cb3265df?auto=format&fit=crop&w=850&q=80');"></div>
             <h3>Rebuild the Walls</h3>
             <p class="muted">4 messages</p>
+            <p class="series-description">A rebuilding call from Nehemiah for believers restoring prayer, purity, and purpose.</p>
+            <button class="btn btn-outline" type="button" data-series-view="Rebuild the Walls">View Series Sermons</button>
           </article>
-          <article class="series-card">
+          <article class="series-card" data-series-card="House of Prayer">
             <div class="thumb" data-style="background-image: url('https://images.unsplash.com/photo-1521791136064-7986c2920216?auto=format&fit=crop&w=850&q=80');"></div>
             <h3>House of Prayer</h3>
             <p class="muted">6 messages</p>
+            <p class="series-description">Teaching the church to stand in intercession and host the presence of God.</p>
+            <button class="btn btn-outline" type="button" data-series-view="House of Prayer">View Series Sermons</button>
           </article>
-          <article class="series-card">
+          <article class="series-card" data-series-card="Kingdom Families">
             <div class="thumb" data-style="background-image: url('https://images.unsplash.com/photo-1490750967868-88aa4486c946?auto=format&fit=crop&w=850&q=80');"></div>
             <h3>Kingdom Families</h3>
             <p class="muted">5 messages</p>
+            <p class="series-description">Biblical tools for marriage, parenting, and spiritual leadership in the home.</p>
+            <button class="btn btn-outline" type="button" data-series-view="Kingdom Families">View Series Sermons</button>
           </article>
-          <article class="series-card">
+          <article class="series-card" data-series-card="Walking in Purpose">
             <div class="thumb" data-style="background-image: url('https://images.unsplash.com/photo-1515168833906-d2a3b82b302a?auto=format&fit=crop&w=850&q=80');"></div>
             <h3>Walking in Purpose</h3>
             <p class="muted">3 messages</p>
+            <p class="series-description">A prophetic blueprint for discovering calling and staying aligned to destiny.</p>
+            <button class="btn btn-outline" type="button" data-series-view="Walking in Purpose">View Series Sermons</button>
           </article>
         </div>
       </div>

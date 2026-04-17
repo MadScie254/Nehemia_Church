@@ -118,25 +118,96 @@
           <p class="muted">See what your giving is making possible.</p>
         </div>
         <div class="projects-grid">
-          <article class="project-card">
+          <article
+            class="project-card"
+            data-project-card
+            data-project-id="church-building"
+            data-project-name="Church Building Project"
+            data-target="5000000"
+            data-initial-raised="2600000"
+          >
             <h4>Church Building Project</h4>
-            <p class="muted">Target: KES 5,000,000</p>
-            <div class="progress-track"><div class="progress-fill" data-style="width: 52%;"></div></div>
-            <p><strong>52% funded</strong></p>
+            <p class="muted">Target: <strong data-project-target>KES 5,000,000</strong></p>
+            <p class="project-amount">Raised: <strong data-project-raised>KES 2,600,000</strong></p>
+            <div class="progress-track" role="progressbar" aria-label="Church Building Project progress" aria-valuemin="0" aria-valuemax="100" aria-valuenow="52">
+              <div class="progress-fill" data-progress-fill data-style="width: 52%;"></div>
+            </div>
+            <p><strong data-project-percent>52%</strong> funded</p>
+            <button class="btn btn-outline project-donate-btn" type="button" data-project-donate="church-building">Donate to this Project</button>
           </article>
-          <article class="project-card">
+          <article
+            class="project-card"
+            data-project-card
+            data-project-id="youth-equipment"
+            data-project-name="Youth Equipment Fund"
+            data-target="750000"
+            data-initial-raised="277500"
+          >
             <h4>Youth Equipment Fund</h4>
-            <p class="muted">Target: KES 750,000</p>
-            <div class="progress-track"><div class="progress-fill" data-style="width: 37%;"></div></div>
-            <p><strong>37% funded</strong></p>
+            <p class="muted">Target: <strong data-project-target>KES 750,000</strong></p>
+            <p class="project-amount">Raised: <strong data-project-raised>KES 277,500</strong></p>
+            <div class="progress-track" role="progressbar" aria-label="Youth Equipment Fund progress" aria-valuemin="0" aria-valuemax="100" aria-valuenow="37">
+              <div class="progress-fill" data-progress-fill data-style="width: 37%;"></div>
+            </div>
+            <p><strong data-project-percent>37%</strong> funded</p>
+            <button class="btn btn-outline project-donate-btn" type="button" data-project-donate="youth-equipment">Donate to this Project</button>
           </article>
-          <article class="project-card">
+          <article
+            class="project-card"
+            data-project-card
+            data-project-id="community-outreach"
+            data-project-name="Community Outreach Fund"
+            data-target="1200000"
+            data-initial-raised="768000"
+          >
             <h4>Community Outreach Fund</h4>
-            <p class="muted">Target: KES 1,200,000</p>
-            <div class="progress-track"><div class="progress-fill" data-style="width: 64%;"></div></div>
-            <p><strong>64% funded</strong></p>
+            <p class="muted">Target: <strong data-project-target>KES 1,200,000</strong></p>
+            <p class="project-amount">Raised: <strong data-project-raised>KES 768,000</strong></p>
+            <div class="progress-track" role="progressbar" aria-label="Community Outreach Fund progress" aria-valuemin="0" aria-valuemax="100" aria-valuenow="64">
+              <div class="progress-fill" data-progress-fill data-style="width: 64%;"></div>
+            </div>
+            <p><strong data-project-percent>64%</strong> funded</p>
+            <button class="btn btn-outline project-donate-btn" type="button" data-project-donate="community-outreach">Donate to this Project</button>
           </article>
         </div>
+        <p class="form-note center mt-1">Project progress bars update as contributions are recorded below on this device.</p>
+      </div>
+    </section>
+
+    <section id="project-donation" class="section section-dark section-padding">
+      <div class="container" data-aos="fade-up">
+        <div class="section-heading">
+          <h2>Donate to a Specific Project</h2>
+          <p class="muted" data-style="color: #dac8a1;">Choose a cause close to your heart and give with focus.</p>
+        </div>
+        <article class="form-card donate-form-card">
+          <p class="kicker">Focused Giving</p>
+          <h3 data-project-active-title>Support a Project You Care About</h3>
+          <!-- TODO: Connect to backend or Formspree -->
+          <form id="project-donation-form" class="form-grid" action="#" method="post">
+            <input type="text" name="donorName" placeholder="Full Name" required>
+            <input type="email" name="donorEmail" placeholder="Email" required>
+            <select id="project-select" class="full" name="project" data-project-select aria-label="Project" title="Project" required>
+              <option value="" disabled selected>Select Project</option>
+              <option value="church-building">Church Building Project</option>
+              <option value="youth-equipment">Youth Equipment Fund</option>
+              <option value="community-outreach">Community Outreach Fund</option>
+            </select>
+            <input type="number" name="amount" min="50" step="50" placeholder="Amount in KES" data-donation-amount required>
+            <select name="paymentMethod" aria-label="Preferred payment method" title="Preferred payment method" required>
+              <option value="" disabled selected>Preferred Payment Method</option>
+              <option value="mpesa">M-Pesa</option>
+              <option value="bank-transfer">Bank Transfer</option>
+              <option value="in-person">Give in Person</option>
+            </select>
+            <textarea class="full" name="note" rows="4" placeholder="Prayer note or giving note (optional)"></textarea>
+            <div class="full">
+              <button class="btn btn-gold" type="submit"><i class="fa-solid fa-hand-holding-heart"></i>Record Donation</button>
+            </div>
+          </form>
+          <p class="form-note">Every contribution above is reflected in the project progress bars.</p>
+          <p class="donation-feedback" data-donation-feedback>Select a project and enter an amount to record a contribution.</p>
+        </article>
       </div>
     </section>
 
