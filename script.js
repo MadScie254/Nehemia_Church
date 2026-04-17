@@ -44,7 +44,11 @@ document.addEventListener("DOMContentLoaded", () => {
     });
 
     navMenu.querySelectorAll("a").forEach((link) => {
-      link.addEventListener("click", () => {
+      link.addEventListener("click", (event) => {
+        if (event.defaultPrevented) {
+          return;
+        }
+
         if (window.matchMedia("(max-width: 980px)").matches) {
           closeMenu();
         }
