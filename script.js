@@ -1,4 +1,11 @@
 document.addEventListener("DOMContentLoaded", () => {
+  document.querySelectorAll("[data-style]").forEach((element) => {
+    const inlineStyle = element.getAttribute("data-style");
+    if (inlineStyle) {
+      element.setAttribute("style", inlineStyle);
+    }
+  });
+
   const body = document.body;
   const header = document.querySelector(".site-header");
   const menuToggle = document.querySelector(".menu-toggle");
