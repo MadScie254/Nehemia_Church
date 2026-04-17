@@ -5,11 +5,11 @@ This project now includes a shared backend for project donations and URL-shareab
 ## Run Locally
 
 1. Install dependencies:
-	- npm install
+  - npm install
 2. Start the server:
-	- npm start
+  - npm start
 3. Open in browser:
-	- http://localhost:3000
+  - [http://localhost:3000](http://localhost:3000)
 
 ## What Is Included
 
