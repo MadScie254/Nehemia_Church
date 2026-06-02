@@ -24,6 +24,8 @@ automatically replace the Unsplash placeholder images in the HTML.
 | `logo.png` | Schema/SEO | Church logo (used in schema.org metadata) |
 | `og-image.jpg` | All pages (meta) | Open Graph / social sharing image (1200×630 recommended) |
 
+| `selina-walukhu.jpg` | leadership | Portrait of Selina Walukhu (First Lady) |
+
 ## Recommended Image Specs
 
 - **Leader Photos:** Min 1200×1600, portrait orientation, clear face framing
