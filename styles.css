@@ -264,6 +264,13 @@ body:not(.has-hero) .site-header {
   gap: 1.3rem;
 }
 
+.nav-wrap > nav {
+  flex: 1 1 auto;
+  min-width: 0;
+  display: flex;
+  justify-content: flex-end;
+}
+
 .brand {
   display: inline-flex;
   align-items: center;
@@ -272,6 +279,7 @@ body:not(.has-hero) .site-header {
   font-family: "Cormorant Garamond", serif;
   font-weight: 700;
   font-size: clamp(1.3rem, 1.6vw, 1.65rem);
+  white-space: nowrap;
 }
 
 .brand i {
@@ -282,6 +290,42 @@ body:not(.has-hero) .site-header {
   display: flex;
   align-items: center;
   gap: 1.15rem;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+  min-width: 0;
+}
+
+.translate-widget {
+  display: flex;
+  align-items: center;
+  flex: 0 0 auto;
+  min-width: 132px;
+  margin-left: auto;
+}
+
+.translate-widget .goog-te-gadget {
+  color: var(--color-cream);
+  font-family: inherit;
+  font-size: 0.85rem;
+  line-height: 1.2;
+}
+
+.translate-widget .goog-te-gadget-simple {
+  display: inline-flex;
+  align-items: center;
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(201, 168, 76, 0.35);
+  border-radius: 999px;
+  padding: 0.3rem 0.55rem;
+}
+
+.translate-widget select,
+.translate-widget .goog-te-combo {
+  max-width: 100%;
+  background: transparent;
+  color: var(--color-white);
+  border: 0;
+  font: inherit;
 }
 
 .nav-item {
@@ -1494,6 +1538,10 @@ body:not(.has-hero) .site-header {
 }
 
 @media (max-width: 980px) {
+  .translate-widget {
+    display: none;
+  }
+
   .menu-toggle {
     display: inline-flex;
   }
