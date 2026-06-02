@@ -32,6 +32,23 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   };
 
+  // Load Google Translate widget if container exists on the page
+  const translateContainer = document.getElementById('google_translate_element');
+  if (translateContainer) {
+    window.googleTranslateElementInit = function() {
+      try {
+        new google.translate.TranslateElement({pageLanguage: 'en', layout: google.translate.TranslateElement.InlineLayout.SIMPLE}, 'google_translate_element');
+      } catch (e) {
+        // ignore init errors
+      }
+    };
+
+    const gtScript = document.createElement('script');
+    gtScript.src = '//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit';
+    gtScript.async = true;
+    document.body.appendChild(gtScript);
+  }
+
   if (menuToggle && navMenu) {
     menuToggle.addEventListener("click", () => {
       const isOpen = body.classList.toggle("menu-open");

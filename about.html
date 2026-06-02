@@ -73,6 +73,7 @@
         <i class="fa-solid fa-cross"></i>
         <span>Nehemia Worship Center</span>
       </a>
+      <div id="google_translate_element" class="translate-widget" style="margin-left:1rem;"></div>
       <button class="menu-toggle" type="button" aria-label="Open menu" aria-expanded="false">
         <i class="fa-solid fa-bars"></i>
       </button>
@@ -399,6 +400,12 @@
   </footer>
 
   <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+  <script type="text/javascript">
+  function googleTranslateElementInit() {
+    new google.translate.TranslateElement({pageLanguage: 'en', layout: google.translate.TranslateElement.InlineLayout.SIMPLE}, 'google_translate_element');
+  }
+  </script>
+  <script src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
   <script src="script.js"></script>
 </body>
 </html>
