@@ -14,6 +14,9 @@ automatically replace the Unsplash placeholder images in the HTML.
 | `pastor-murunga.jpg` | index, leadership | Portrait of Pastor Murunga |
 | `walukhu-family.jpg` | leadership | Bishop David & Mama Selina Walukhu family photo |
 
+| `pastor-placeholder.svg` | leadership, branches | Generic placeholder used when a pastor photo isn't yet available |
+| `branch-pastor-<slug>.jpg` | branches | Optional: branch pastor portrait files (use a slug like `chebich-albert-murere`)
+
 ## Branding & SEO
 
 | Filename | Used On | Description |
