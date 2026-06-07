@@ -161,6 +161,16 @@ document.addEventListener("DOMContentLoaded", () => {
 
   normalizeSiteText();
 
+  const shortenBrandName = () => {
+    document.querySelectorAll(".brand span").forEach((span) => {
+      if (span.textContent.trim() === "Nehemia Worship Center") {
+        span.textContent = "NWC";
+      }
+    });
+  };
+
+  shortenBrandName();
+
   const syncDropdownState = (item, isOpen) => {
     item.classList.toggle("open", isOpen);
     const trigger = item.firstElementChild;
