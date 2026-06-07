@@ -1,8 +1,20 @@
 document.addEventListener("DOMContentLoaded", () => {
+  const applyLocalImageFallbacks = (inlineStyle) => {
+    if (!inlineStyle || !inlineStyle.includes("images.unsplash.com")) {
+      return inlineStyle;
+    }
+
+    return inlineStyle.replace(
+      /url\((['"]?)(https:\/\/images\.unsplash\.com\/(photo-[^?'"\)\s]+)[^'"\)\s]*)\1\)/g,
+      (_match, _quote, remoteUrl, photoId) =>
+        `url('assets/${photoId}.jpg'), url('${remoteUrl}')`
+    );
+  };
+
   document.querySelectorAll("[data-style]").forEach((element) => {
     const inlineStyle = element.getAttribute("data-style");
     if (inlineStyle) {
-      element.setAttribute("style", inlineStyle);
+      element.setAttribute("style", applyLocalImageFallbacks(inlineStyle));
     }
   });
 
