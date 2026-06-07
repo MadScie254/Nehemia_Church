@@ -761,7 +761,7 @@ body:not(.has-hero) .site-header {
 .leader-photo {
   min-height: 260px;
   background-size: cover;
-  background-position: center;
+  background-position: center 18%;
 }
 
 .leader-content {
@@ -838,6 +838,15 @@ body:not(.has-hero) .site-header {
   place-items: center;
   color: var(--color-gold);
   margin-bottom: 0.8rem;
+  overflow: hidden;
+}
+
+.avatar img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center 18%;
+  display: block;
 }
 
 .gallery-strip {
@@ -984,7 +993,7 @@ body:not(.has-hero) .site-header {
 .profile-feature .photo {
   min-height: 340px;
   background-size: cover;
-  background-position: center;
+  background-position: center 18%;
 }
 
 .profile-feature .bio {
@@ -1129,7 +1138,7 @@ body:not(.has-hero) .site-header {
   min-height: 320px;
   border-radius: var(--radius-lg);
   background-size: cover;
-  background-position: center;
+  background-position: center 18%;
 }
 
 .ministry-content {
