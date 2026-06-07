@@ -1,4 +1,39 @@
 document.addEventListener("DOMContentLoaded", () => {
+  document.body.classList.add("preloader-active");
+
+  const preloader = document.createElement("div");
+  preloader.className = "site-preloader";
+  preloader.setAttribute("role", "status");
+  preloader.setAttribute("aria-live", "polite");
+  preloader.innerHTML = `
+    <div class="site-preloader__panel">
+      <div class="site-preloader__halo" aria-hidden="true"></div>
+      <div class="site-preloader__mark" aria-hidden="true">
+        <i class="fa-solid fa-cross"></i>
+      </div>
+      <p class="site-preloader__title">Nehemia Worship Center</p>
+      <p class="site-preloader__subtitle">Loading the house of the Lord</p>
+      <div class="site-preloader__dots" aria-hidden="true">
+        <span></span><span></span><span></span>
+      </div>
+    </div>
+  `;
+  document.body.prepend(preloader);
+
+  const finishLoading = () => {
+    document.body.classList.remove("preloader-active");
+    preloader.classList.add("site-preloader--hide");
+    window.setTimeout(() => {
+      preloader.remove();
+    }, 450);
+  };
+
+  if (document.readyState === "complete") {
+    finishLoading();
+  } else {
+    window.addEventListener("load", finishLoading, { once: true });
+  }
+
   const buildLocalImageFallbacks = (assetPath) => {
     const withoutExtension = assetPath.replace(/\.(jpe?g|png|webp|gif|svg)$/i, "");
     const candidates = [

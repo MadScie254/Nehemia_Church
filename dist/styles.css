@@ -34,6 +34,158 @@ body {
   overflow-x: hidden;
 }
 
+body.preloader-active {
+  overflow: hidden;
+}
+
+.site-preloader {
+  position: fixed;
+  inset: 0;
+  z-index: 5000;
+  display: grid;
+  place-items: center;
+  background:
+    radial-gradient(circle at top, rgba(201, 168, 76, 0.2), transparent 42%),
+    linear-gradient(160deg, #081126 0%, #0d1b3e 42%, #3a0f28 100%);
+  color: var(--color-cream);
+  transition: opacity 0.45s ease, visibility 0.45s ease;
+}
+
+.site-preloader--hide {
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+}
+
+.site-preloader__panel {
+  position: relative;
+  width: min(92vw, 420px);
+  padding: 2.5rem 1.5rem 2rem;
+  text-align: center;
+}
+
+.site-preloader__halo {
+  position: absolute;
+  inset: 0;
+  margin: auto;
+  width: min(72vw, 280px);
+  aspect-ratio: 1 / 1;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(201, 168, 76, 0.2), transparent 68%);
+  filter: blur(1px);
+  animation: preloader-pulse 2.4s ease-in-out infinite;
+}
+
+.site-preloader__mark {
+  position: relative;
+  display: grid;
+  place-items: center;
+  width: 92px;
+  height: 92px;
+  margin: 0 auto 1rem;
+  border-radius: 50%;
+  border: 1px solid rgba(201, 168, 76, 0.55);
+  background: rgba(255, 255, 255, 0.08);
+  color: var(--color-gold-light);
+  box-shadow: 0 0 0 0 rgba(201, 168, 76, 0.35);
+  animation: preloader-glow 2s ease-in-out infinite;
+}
+
+.site-preloader__mark i {
+  font-size: 2.2rem;
+}
+
+.site-preloader__title {
+  position: relative;
+  font-family: "Cormorant Garamond", serif;
+  font-size: clamp(1.9rem, 5vw, 2.7rem);
+  color: var(--color-gold-light);
+  letter-spacing: 0.03em;
+}
+
+.site-preloader__subtitle {
+  position: relative;
+  margin-top: 0.25rem;
+  color: rgba(245, 240, 232, 0.88);
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  font-size: 0.78rem;
+}
+
+.site-preloader__dots {
+  position: relative;
+  display: inline-flex;
+  gap: 0.45rem;
+  margin-top: 1.3rem;
+}
+
+.site-preloader__dots span {
+  width: 10px;
+  height: 10px;
+  border-radius: 999px;
+  background: var(--color-gold-light);
+  box-shadow: 0 0 12px rgba(232, 201, 122, 0.65);
+  animation: preloader-dot 1.2s ease-in-out infinite;
+}
+
+.site-preloader__dots span:nth-child(2) {
+  animation-delay: 0.15s;
+}
+
+.site-preloader__dots span:nth-child(3) {
+  animation-delay: 0.3s;
+}
+
+@keyframes preloader-pulse {
+  0%,
+  100% {
+    transform: scale(0.95);
+    opacity: 0.75;
+  }
+  50% {
+    transform: scale(1.05);
+    opacity: 1;
+  }
+}
+
+@keyframes preloader-glow {
+  0%,
+  100% {
+    transform: translateY(0);
+    box-shadow: 0 0 0 0 rgba(201, 168, 76, 0.12);
+  }
+  50% {
+    transform: translateY(-2px);
+    box-shadow: 0 0 0 14px rgba(201, 168, 76, 0.02);
+  }
+}
+
+@keyframes preloader-dot {
+  0%,
+  80%,
+  100% {
+    transform: translateY(0);
+    opacity: 0.45;
+  }
+  40% {
+    transform: translateY(-6px);
+    opacity: 1;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .site-preloader,
+  .site-preloader__halo,
+  .site-preloader__mark,
+  .site-preloader__dots span {
+    animation: none !important;
+  }
+
+  .site-preloader {
+    transition: none;
+  }
+}
+
 body.menu-open {
   overflow: hidden;
 }
@@ -761,7 +913,7 @@ body:not(.has-hero) .site-header {
 .leader-photo {
   min-height: 260px;
   background-size: cover;
-  background-position: center;
+  background-position: center 18%;
 }
 
 .leader-content {
@@ -838,6 +990,51 @@ body:not(.has-hero) .site-header {
   place-items: center;
   color: var(--color-gold);
   margin-bottom: 0.8rem;
+  overflow: hidden;
+}
+
+.avatar img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center 18%;
+  display: block;
+}
+
+.avatar-large-square {
+  width: 96px;
+  height: 96px;
+  border-radius: 8px;
+  flex: 0 0 96px;
+}
+
+.team-card-wide {
+  grid-column: span 2;
+}
+
+.youth-card-layout {
+  display: flex;
+  gap: 1rem;
+  align-items: flex-start;
+}
+
+.youth-card-copy {
+  min-width: 0;
+}
+
+.youth-testimony {
+  margin: 0.2rem 0 0.6rem;
+  font-size: 0.95rem;
+}
+
+.youth-role-list {
+  display: flex;
+  gap: 0.6rem;
+  flex-wrap: wrap;
+}
+
+.team-card-note {
+  font-size: 0.9rem;
 }
 
 .gallery-strip {
@@ -984,7 +1181,7 @@ body:not(.has-hero) .site-header {
 .profile-feature .photo {
   min-height: 340px;
   background-size: cover;
-  background-position: center;
+  background-position: center 18%;
 }
 
 .profile-feature .bio {
@@ -1129,7 +1326,7 @@ body:not(.has-hero) .site-header {
   min-height: 320px;
   border-radius: var(--radius-lg);
   background-size: cover;
-  background-position: center;
+  background-position: center 18%;
 }
 
 .ministry-content {

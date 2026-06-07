@@ -8,7 +8,7 @@ Once uploaded, the website will automatically use them.
 These are the most important files. They appear on the homepage, leadership page, and in site metadata.
 
 | Filename | Where it appears | What to upload |
-|---|---|---|
+| --- | --- | --- |
 | `bishop-david-walukhu.jpg` | Homepage, Leadership | Bishop David Walukhu portrait |
 | `pastor-murunga.jpg` | Homepage, Leadership | Pastor Murunga portrait |
 | `selina-walukhu.jpg` | Leadership | Selina Walukhu portrait |
@@ -28,7 +28,7 @@ Important:
 These are the portraits used in the leadership section and team cards.
 
 | Filename | Used for | Description |
-|---|---|---|
+| --- | --- | --- |
 | `bishop-david-walukhu.jpg` | Bishop David card | Main portrait of Bishop David Walukhu |
 | `pastor-murunga.jpg` | Pastor Murunga card | Main portrait of Pastor Murunga |
 | `selina-walukhu.jpg` | Selina Walukhu card | Portrait of Mama Selina / First Lady |
@@ -40,7 +40,7 @@ These are the portraits used in the leadership section and team cards.
 These are the people shown in the leadership cards. Upload a matching image file if you want to replace the placeholder avatar.
 
 | Name | Suggested filename |
-|---|---|
+| --- | --- |
 | Pastor Sarah Nafula | `pastor-sarah-nafula.jpg` |
 | Ibrahim | `ibrahim.jpg` |
 | Daniel Wanjala | `daniel-wanjala.jpg` |
@@ -66,7 +66,7 @@ The site uses Unsplash placeholders as backgrounds. You can replace each one by 
 The page script automatically checks for the local file first, so if you upload the matching image, it will replace the placeholder without changing HTML.
 
 | Filename | Used on | What the image is for |
-|---|---|---|
+| --- | --- | --- |
 | `photo-1420585269105-d908ec316eb3.jpg` | Sermons / family section | A warm worship or reflection background |
 | `photo-1425136738262-212551713a58.jpg` | Leadership hero | Leadership / ministry background |
 | `photo-1438032005730-c779502df39b.jpg` | Sermons archive | Sermon archive card background |
