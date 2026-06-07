@@ -437,6 +437,13 @@ body:not(.has-hero) .site-header {
   white-space: nowrap;
 }
 
+@media (min-width: 981px) {
+  .brand {
+    margin-right: clamp(1.5rem, 2.5vw, 3rem);
+    font-size: clamp(1.15rem, 1.45vw, 1.45rem);
+  }
+}
+
 .brand i {
   font-size: 1.3rem;
 }
@@ -449,7 +456,7 @@ body:not(.has-hero) .site-header {
   justify-content: flex-end;
   min-width: 0;
   margin: 0;
-  padding-left: 0;
+  padding-left: 0.9rem;
 }
 
 .translate-widget {
