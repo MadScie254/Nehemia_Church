@@ -1,14 +1,33 @@
 document.addEventListener("DOMContentLoaded", () => {
+  const buildLocalImageFallbacks = (assetPath) => {
+    const withoutExtension = assetPath.replace(/\.(jpe?g|png|webp|gif|svg)$/i, "");
+    const candidates = [
+      `${withoutExtension}.jpg`,
+      `${withoutExtension}.jpeg`,
+      `${withoutExtension}.png`,
+      `${withoutExtension}.webp`
+    ];
+
+    return candidates.map((candidate) => `url('${candidate}')`).join(", ");
+  };
+
   const applyLocalImageFallbacks = (inlineStyle) => {
-    if (!inlineStyle || !inlineStyle.includes("images.unsplash.com")) {
+    if (!inlineStyle) {
       return inlineStyle;
     }
 
-    return inlineStyle.replace(
+    let patchedStyle = inlineStyle.replace(
+      /url\((['"]?)(assets\/[^?'"\)\s]+)\1\)/g,
+      (_match, _quote, assetPath) => buildLocalImageFallbacks(assetPath)
+    );
+
+    patchedStyle = patchedStyle.replace(
       /url\((['"]?)(https:\/\/images\.unsplash\.com\/(photo-[^?'"\)\s]+)[^'"\)\s]*)\1\)/g,
       (_match, _quote, remoteUrl, photoId) =>
-        `url('assets/${photoId}.jpg'), url('${remoteUrl}')`
+        `${buildLocalImageFallbacks(`assets/${photoId}`)}, url('${remoteUrl}')`
     );
+
+    return patchedStyle;
   };
 
   document.querySelectorAll("[data-style]").forEach((element) => {
