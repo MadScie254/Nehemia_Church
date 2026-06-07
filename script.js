@@ -114,6 +114,53 @@ document.addEventListener("DOMContentLoaded", () => {
   const navMenu = document.querySelector(".nav-menu");
   const pageKey = body.dataset.page;
 
+  const normalizeDashText = (value) => (typeof value === "string" ? value.replace(/—/g, " - ") : value);
+
+  const normalizeSiteText = () => {
+    document.title = normalizeDashText(document.title);
+
+    document
+      .querySelectorAll(
+        'meta[name="title"], meta[property="og:title"], meta[property="twitter:title"], meta[name="description"], meta[property="og:description"], meta[property="twitter:description"]'
+      )
+      .forEach((meta) => {
+        const content = meta.getAttribute("content");
+        if (content) {
+          meta.setAttribute("content", normalizeDashText(content));
+        }
+      });
+
+    const walker = document.createTreeWalker(document.body, NodeFilter.SHOW_TEXT, {
+      acceptNode(node) {
+        if (!node.nodeValue || !node.nodeValue.includes("—")) {
+          return NodeFilter.FILTER_REJECT;
+        }
+
+        const parent = node.parentElement;
+        if (!parent) {
+          return NodeFilter.FILTER_REJECT;
+        }
+
+        if (["SCRIPT", "STYLE", "NOSCRIPT", "TEXTAREA", "CODE", "PRE"].includes(parent.tagName)) {
+          return NodeFilter.FILTER_REJECT;
+        }
+
+        return NodeFilter.FILTER_ACCEPT;
+      }
+    });
+
+    const textNodes = [];
+    while (walker.nextNode()) {
+      textNodes.push(walker.currentNode);
+    }
+
+    textNodes.forEach((node) => {
+      node.nodeValue = node.nodeValue.replace(/—/g, " - ");
+    });
+  };
+
+  normalizeSiteText();
+
   const syncDropdownState = (item, isOpen) => {
     item.classList.toggle("open", isOpen);
     const trigger = item.firstElementChild;

@@ -422,6 +422,7 @@ body:not(.has-hero) .site-header {
   min-width: 0;
   display: flex;
   justify-content: flex-end;
+  padding-left: clamp(1rem, 2vw, 2.4rem);
 }
 
 .brand {
@@ -1276,6 +1277,21 @@ body:not(.has-hero) .site-header {
 
 .profile-feature .bio {
   padding: 1.5rem;
+}
+
+.section-burgundy .profile-feature.profile-feature--soft {
+  background: linear-gradient(160deg, rgba(11, 19, 44, 0.98), rgba(24, 11, 31, 0.96));
+  color: var(--color-cream);
+  border-color: rgba(201, 168, 76, 0.5);
+  box-shadow: 0 14px 30px rgba(0, 0, 0, 0.28);
+}
+
+.section-burgundy .profile-feature.profile-feature--soft .profile-feature-panel {
+  background: rgba(255, 255, 255, 0.04);
+}
+
+.section-burgundy .profile-feature.profile-feature--soft .bio {
+  color: var(--color-cream);
 }
 
 .team-grid {
