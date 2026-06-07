@@ -46,6 +46,40 @@ document.addEventListener("DOMContentLoaded", () => {
     return candidates.map((candidate) => `url('${candidate}')`).join(", ");
   };
 
+  const hydrateImageFallbacks = () => {
+    document.querySelectorAll("img[data-image-base]").forEach((img) => {
+      const imageBase = img.getAttribute("data-image-base");
+      if (!imageBase) {
+        return;
+      }
+
+      const fallbackSrc = img.getAttribute("data-image-fallback") || img.getAttribute("src") || "";
+      const candidates = [
+        `${imageBase}.jpg`,
+        `${imageBase}.jpeg`,
+        `${imageBase}.png`,
+        `${imageBase}.webp`
+      ];
+
+      let candidateIndex = 0;
+
+      const loadNextCandidate = () => {
+        if (candidateIndex < candidates.length) {
+          img.src = candidates[candidateIndex];
+          candidateIndex += 1;
+          return;
+        }
+
+        if (fallbackSrc) {
+          img.src = fallbackSrc;
+        }
+      };
+
+      img.addEventListener("error", loadNextCandidate);
+      loadNextCandidate();
+    });
+  };
+
   const applyLocalImageFallbacks = (inlineStyle) => {
     if (!inlineStyle) {
       return inlineStyle;
@@ -71,6 +105,8 @@ document.addEventListener("DOMContentLoaded", () => {
       element.setAttribute("style", applyLocalImageFallbacks(inlineStyle));
     }
   });
+
+  hydrateImageFallbacks();
 
   const body = document.body;
   const header = document.querySelector(".site-header");

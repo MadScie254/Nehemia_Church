@@ -3,6 +3,21 @@
 Upload your real photos into this `assets` folder using the names below.
 Once uploaded, the website will automatically use them.
 
+## 0) Youth Photos You Mentioned
+
+These are the exact people you wanted named for the youth and staff photos.
+Upload each file with the exact base name below. The site will try `.jpg`, `.jpeg`, `.png`, and `.webp` automatically.
+
+| Filename | Role | Description |
+|---|---|---|
+| `brian.jpg` | Youth Ministry Chairman | Brian's portrait for the youth chair card |
+| `elly-machimbo.jpg` | Youth Coordinator | Elly Machimbo's portrait for the youth coordinator card |
+| `pastor-sarah-nafula.jpg` | Worship & Creative Coordinator | Pastor Sarah Nafula portrait |
+| `ibrahim.jpg` | Media & Streaming | Ibrahim portrait |
+| `daniel-wanjala.jpg` | ICT & Networking | Daniel Wanjala portrait |
+
+The remaining youth leadership slots can stay on `pastor-placeholder.svg` until you announce the next names.
+
 ## 1) Leader and Brand Images
 
 These are the most important files. They appear on the homepage, leadership page, and in site metadata.
