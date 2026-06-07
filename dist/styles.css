@@ -418,10 +418,12 @@ body:not(.has-hero) .site-header {
 
 .nav-wrap > nav {
   order: 1;
-  flex: 1 1 auto;
+  flex: 0 1 auto;
   min-width: 0;
   display: flex;
   justify-content: flex-end;
+  margin-left: auto;
+  padding-left: clamp(1rem, 2vw, 2.4rem);
 }
 
 .brand {
@@ -435,6 +437,13 @@ body:not(.has-hero) .site-header {
   white-space: nowrap;
 }
 
+@media (min-width: 981px) {
+  .brand {
+    margin-right: clamp(1.5rem, 2.5vw, 3rem);
+    font-size: clamp(1.15rem, 1.45vw, 1.45rem);
+  }
+}
+
 .brand i {
   font-size: 1.3rem;
 }
@@ -446,6 +455,8 @@ body:not(.has-hero) .site-header {
   flex-wrap: nowrap;
   justify-content: flex-end;
   min-width: 0;
+  margin: 0;
+  padding-left: 0.9rem;
 }
 
 .translate-widget {
@@ -1276,6 +1287,21 @@ body:not(.has-hero) .site-header {
 
 .profile-feature .bio {
   padding: 1.5rem;
+}
+
+.section-burgundy .profile-feature.profile-feature--soft {
+  background: rgba(248, 241, 228, 0.98);
+  color: var(--color-text-dark);
+  border-color: rgba(201, 168, 76, 0.5);
+  box-shadow: 0 14px 30px rgba(0, 0, 0, 0.18);
+}
+
+.section-burgundy .profile-feature.profile-feature--soft .profile-feature-panel {
+  background: rgba(201, 168, 76, 0.08);
+}
+
+.section-burgundy .profile-feature.profile-feature--soft .bio {
+  color: var(--color-text-dark);
 }
 
 .team-grid {

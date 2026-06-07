@@ -1290,18 +1290,18 @@ body:not(.has-hero) .site-header {
 }
 
 .section-burgundy .profile-feature.profile-feature--soft {
-  background: linear-gradient(160deg, rgba(11, 19, 44, 0.98), rgba(24, 11, 31, 0.96));
-  color: var(--color-cream);
+  background: rgba(248, 241, 228, 0.98);
+  color: var(--color-text-dark);
   border-color: rgba(201, 168, 76, 0.5);
-  box-shadow: 0 14px 30px rgba(0, 0, 0, 0.28);
+  box-shadow: 0 14px 30px rgba(0, 0, 0, 0.18);
 }
 
 .section-burgundy .profile-feature.profile-feature--soft .profile-feature-panel {
-  background: rgba(255, 255, 255, 0.04);
+  background: rgba(201, 168, 76, 0.08);
 }
 
 .section-burgundy .profile-feature.profile-feature--soft .bio {
-  color: var(--color-cream);
+  color: var(--color-text-dark);
 }
 
 .team-grid {
