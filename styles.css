@@ -1008,6 +1008,18 @@ body:not(.has-hero) .site-header {
   flex: 0 0 96px;
 }
 
+.avatar-portrait {
+  width: 108px;
+  height: 108px;
+  border-radius: 16px;
+  flex: 0 0 108px;
+  overflow: hidden;
+}
+
+.avatar-portrait img {
+  object-position: center 14%;
+}
+
 .team-card-wide {
   grid-column: span 2;
 }
