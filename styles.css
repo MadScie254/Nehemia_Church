@@ -1521,6 +1521,22 @@ body:not(.has-hero) .site-header {
 }
 
 @media (max-width: 1140px) {
+  .nav-wrap {
+    gap: 0.85rem;
+  }
+
+  .nav-menu {
+    gap: 0.8rem;
+  }
+
+  .nav-link {
+    font-size: 0.89rem;
+  }
+
+  .translate-widget {
+    display: none;
+  }
+
   .ministries-grid {
     grid-template-columns: repeat(3, minmax(0, 1fr));
   }
@@ -1747,6 +1763,10 @@ body:not(.has-hero) .site-header {
 
   .brand {
     font-size: 1.12rem;
+  }
+
+  .brand span {
+    font-size: 0.98rem;
   }
 
   .hero-cross {

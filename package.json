@@ -4,6 +4,7 @@
   "private": true,
   "description": "Nehemia Ministry Kenya website with shared donation backend",
   "scripts": {
+    "build": "node scripts/build-static.js",
     "start": "node server.js",
     "dev": "node --watch server.js"
   },
