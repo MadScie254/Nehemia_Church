@@ -208,24 +208,15 @@ document.addEventListener("DOMContentLoaded", () => {
 
   document.querySelectorAll(".nav-item.has-dropdown > .nav-link").forEach((link) => {
     link.addEventListener("click", (event) => {
-      if (!window.matchMedia("(max-width: 980px)").matches) {
-        return;
-      }
-
       const parent = link.parentElement;
-      if (!parent) {
+      if (!(parent instanceof HTMLElement)) {
         return;
       }
 
-      if (!parent.classList.contains("open")) {
-        event.preventDefault();
-        document.querySelectorAll(".nav-item.has-dropdown.open").forEach((item) => {
-          if (item !== parent) {
-            item.classList.remove("open");
-          }
-        });
-        parent.classList.add("open");
-      }
+      event.preventDefault();
+      const isOpen = parent.classList.contains("open");
+      closeAllDropdowns(parent);
+      syncDropdownState(parent, !isOpen);
     });
   });
 
