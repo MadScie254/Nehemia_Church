@@ -9,7 +9,7 @@ These are the exact people you wanted named for the youth and staff photos.
 Upload each file with the exact base name below. The site will try `.jpg`, `.jpeg`, `.png`, and `.webp` automatically.
 
 | Filename | Role | Description |
-|---|---|---|
+| --- | --- | --- |
 | `brian.jpg` | Youth Ministry Chairman | Brian's portrait for the youth chair card |
 | `elly-machimbo.jpg` | Youth Coordinator | Elly Machimbo's portrait for the youth coordinator card |
 | `pastor-sarah-nafula.jpg` | Worship & Creative Coordinator | Pastor Sarah Nafula portrait |
