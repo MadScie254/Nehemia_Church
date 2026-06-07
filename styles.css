@@ -448,6 +448,8 @@ body:not(.has-hero) .site-header {
   flex-wrap: nowrap;
   justify-content: flex-end;
   min-width: 0;
+  margin: 0;
+  padding-left: 0;
 }
 
 .translate-widget {
