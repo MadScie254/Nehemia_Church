@@ -412,11 +412,12 @@ body:not(.has-hero) .site-header {
   min-height: 84px;
   display: flex;
   align-items: center;
-  justify-content: space-between;
-  gap: 1.3rem;
+  justify-content: flex-start;
+  gap: 1rem;
 }
 
 .nav-wrap > nav {
+  order: 1;
   flex: 1 1 auto;
   min-width: 0;
   display: flex;
@@ -442,7 +443,7 @@ body:not(.has-hero) .site-header {
   display: flex;
   align-items: center;
   gap: 1.15rem;
-  flex-wrap: wrap;
+  flex-wrap: nowrap;
   justify-content: flex-end;
   min-width: 0;
 }
@@ -450,9 +451,9 @@ body:not(.has-hero) .site-header {
 .translate-widget {
   display: flex;
   align-items: center;
+  order: 2;
   flex: 0 0 auto;
   min-width: 132px;
-  margin-left: auto;
 }
 
 .translate-widget .goog-te-gadget {
@@ -493,10 +494,15 @@ body:not(.has-hero) .site-header {
   align-items: center;
   gap: 0.35rem;
   transition: color 0.25s ease;
+  white-space: nowrap;
 }
 
 .nav-link:hover {
   color: var(--color-gold-light);
+}
+
+.nav-item.has-dropdown > .nav-link {
+  cursor: pointer;
 }
 
 .nav-item.active > .nav-link {
@@ -1061,8 +1067,13 @@ body:not(.has-hero) .site-header {
 }
 
 .profile-feature--soft {
-  background: rgba(255, 255, 255, 0.08);
+  background: linear-gradient(160deg, rgba(13, 27, 62, 0.96), rgba(20, 17, 35, 0.92));
   border-color: rgba(201, 168, 76, 0.5);
+  box-shadow: 0 14px 30px rgba(0, 0, 0, 0.22);
+}
+
+.profile-feature--soft .profile-feature-panel {
+  background: rgba(255, 255, 255, 0.03);
 }
 
 .profile-feature-panel {
@@ -1086,6 +1097,10 @@ body:not(.has-hero) .site-header {
 }
 
 .bio--cream {
+  color: var(--color-cream);
+}
+
+.section-burgundy .profile-feature--soft .bio {
   color: var(--color-cream);
 }
 
