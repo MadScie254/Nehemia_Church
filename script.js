@@ -181,25 +181,7 @@ document.addEventListener("DOMContentLoaded", () => {
       }
     });
 
-    document.querySelectorAll(".contact-card").forEach((card) => {
-      Array.from(card.querySelectorAll("p")).forEach((paragraph) => {
-        const label = paragraph.querySelector("strong")?.textContent?.trim();
-        if (label === "Phone:") {
-          paragraph.innerHTML = `<strong>Church Phone:</strong> <a href="tel:${contactDetails.churchPhoneTel}">${contactDetails.churchPhoneDisplay}</a>`;
-        } else if (label === "Bible College:") {
-          paragraph.innerHTML = `<strong>Bible College:</strong> <a href="tel:${contactDetails.bibleSchoolPhoneTel}">${contactDetails.bibleSchoolPhoneDisplay}</a> for applications &amp; enrollment information`;
-        } else if (label === "Physical Address:") {
-          paragraph.innerHTML = `<strong>Physical Address:</strong> Mukhonje Market, Lugari Constituency, Kakamega County, Kenya <br><a class="link-gold" href="${contactDetails.locationUrl}" target="_blank" rel="noopener">Open exact location</a>`;
-        }
-      });
-    });
-
     if (pageKey === "contact") {
-      const locationBlurb = document.querySelector(".section-dark .section-heading .muted");
-      if (locationBlurb) {
-        locationBlurb.innerHTML = `Mukhonje Market, Lugari Constituency, Kakamega County, Kenya. <a class="link-gold" href="${contactDetails.locationUrl}" target="_blank" rel="noopener">Open exact location</a>`;
-      }
-
       const mapFrame = document.querySelector(".map-wrap iframe");
       if (mapFrame instanceof HTMLIFrameElement) {
         mapFrame.setAttribute("title", "Nehemia Worship Center Exact Location");
