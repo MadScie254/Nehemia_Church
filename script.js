@@ -166,7 +166,7 @@ document.addEventListener("DOMContentLoaded", () => {
     churchPhoneTel: "+254720088957",
     bibleSchoolPhoneDisplay: "+254 728 664109",
     bibleSchoolPhoneTel: "+254728664109",
-    locationUrl: "https://maps.app.goo.gl/NdEd3nmqp4xPFKV87"
+    locationUrl: "https://share.google/8FFH8dOJ98YVeF0cQ"
   };
 
   const updateContactDetails = () => {
@@ -184,7 +184,7 @@ document.addEventListener("DOMContentLoaded", () => {
     if (pageKey === "contact") {
       const mapFrame = document.querySelector(".map-wrap iframe");
       if (mapFrame instanceof HTMLIFrameElement) {
-        mapFrame.setAttribute("title", "Nehemia Worship Center Exact Location");
+        mapFrame.setAttribute("title", "Nehemia Church Kenya Satellite View");
       }
     }
   };
