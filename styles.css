@@ -418,10 +418,11 @@ body:not(.has-hero) .site-header {
 
 .nav-wrap > nav {
   order: 1;
-  flex: 1 1 auto;
+  flex: 0 1 auto;
   min-width: 0;
   display: flex;
   justify-content: flex-end;
+  margin-left: auto;
   padding-left: clamp(1rem, 2vw, 2.4rem);
 }
 
